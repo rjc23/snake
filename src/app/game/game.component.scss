@@ -1,0 +1,15 @@
+.game {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .game__grid {
+        width: 500px;
+        height: 500px;
+        display: flex;
+        flex-wrap: wrap;
+        border: solid 5px black;
+    }
+}

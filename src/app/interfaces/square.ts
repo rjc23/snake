@@ -1,9 +1,9 @@
-export interface Game {
-    data: Data,
-    grid: Square[]
-}
+// export interface Game {
+//     data: Data,
+//     grid: Square[]
+// }
 
-interface Data {
+export interface Data {
     direction: string,
     speed: number,
     snake: number[]

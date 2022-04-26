@@ -1,8 +1,8 @@
 <div 
     class="square"
     [ngClass]="{
-        'fill' : square.fill
+        'fill' : (square$ | async)?.fill
     }"
 >
-
+    <!-- <p>{{ (square$ | async)?.key }}</p> -->
 </div>

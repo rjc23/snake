@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Square } from '../interfaces/square';
 import { SnakeService } from '../services/snake.service';
 
@@ -10,12 +10,11 @@ import { SnakeService } from '../services/snake.service';
 })
 export class GameComponent {
 
-  grid$!: Observable<Square[]>;
+  grid!: Observable<Square>[];
 
   constructor(private game: SnakeService) { 
-    this.grid$ = this.game.getSnake().pipe(
-      map(game => game.grid)
-    )
+    this.grid = this.game.getGrid();
+    console.log(this.grid.length);
   }
 
   moveSnake() {

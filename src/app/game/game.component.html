@@ -1,6 +1,6 @@
 <div class="game">
     <div class="game__grid">
-        <app-square *ngFor="let square of grid$ | async" [square]="square"></app-square>
+        <app-square *ngFor="let square of grid" [square$]="square"></app-square>
     </div>
 </div>
 <button (click)="moveSnake()" >Move snake</button>

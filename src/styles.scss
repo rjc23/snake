@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: nokia;
+    src: url("./assets/nokiafc22.ttf") format("truetype");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(190,201,5);
+    background: radial-gradient(circle, rgba(190,201,5,1) 0%, rgba(185,201,5,0.9) 100%);
+}

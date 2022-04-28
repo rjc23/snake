@@ -1,6 +1,26 @@
+
 <div class="game">
+    <h1>Retro snake</h1>
     <div class="game__grid">
-        <app-square *ngFor="let square of grid$ | async" [square]="square"></app-square>
+        <!-- <div *ngIf="(game$ | async)?.data?.showWelcome" class="welcome">
+            <h2>Choose level</h2>
+            <div class="buttons">
+                <button (click)="startEasy()">Easy</button>
+                <button (click)="startHard()">Hard</button>
+                <button (click)="startInsane()" >Insane</button>
+            </div>
+        </div> -->
+        
+        <!-- <div *ngIf="(game$ | async)?.data?.showGame"> -->
+        <div *ngIf="true">
+            <app-square *ngFor="let square of grid$ | async" [square]="square"></app-square>
+        </div>
+    </div>
+    <div class="scores">
+        <p>Score: {{ (game$ | async)?.data?.score }}</p>
+        <p>High Score: 90</p>
     </div>
 </div>
-<button (click)="moveSnake()" >Move snake</button>
+
+<button (click)="stopGame()">Stop</button>
+<button (click)="newGame()">New Game</button>

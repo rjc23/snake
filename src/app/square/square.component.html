@@ -4,5 +4,14 @@
         'fill' : square.fill
     }"
 >
-
+    <div class="food" *ngIf="square.food">
+        <div class="rectOne"></div>
+        <div class="rectTwo"></div>
+        <div 
+            class="rectThree"
+            [ngClass]="{
+                'black' : square.fill
+            }"
+        ></div>
+    </div>
 </div>

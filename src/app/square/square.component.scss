@@ -1,9 +1,45 @@
 .square {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
 }
 
 .fill {
-    background-color: black;
-    border-radius: 14px;
+    z-index: 5;
+    background-color: black !important;
+    border-radius: 7px;
+}
+
+.food {
+    width: 100%;
+    position: relative;
+    .rectOne {
+        width: 8px;
+        height: 22px;
+        background-color: black;
+        position: absolute;
+        margin-left: 8.5px;
+        margin-top: 1.5px;
+        border-radius: 2px;
+    }
+    .rectTwo {
+        width: 22px;
+        height: 8px;
+        background-color: black;
+        position: absolute;
+        margin-top: 8.5px;
+        margin-left: 1.5px;
+        border-radius: 2px;
+    }
+    .rectThree {
+        position: absolute;
+        background-color: #C0C905;
+        height: 8px;
+        width: 8px;
+        margin-left: 8.5px;
+        margin-top: 8.5px;
+        border-radius: 1px;
+    }
+    .black {
+        background-color: black !important;
+    }
 }

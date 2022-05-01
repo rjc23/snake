@@ -1,12 +1,19 @@
 .square {
     width: 25px;
     height: 25px;
+    @media screen and (max-width: 480px) {
+        width: 16.25px;
+        height: 16.25px;
+    }
 }
 
 .fill {
     z-index: 5;
     background-color: black !important;
     border-radius: 7px;
+    @media screen and (max-width: 480px) {
+        border-radius: 4px;
+    }
 }
 
 .food {
@@ -20,6 +27,13 @@
         margin-left: 8.5px;
         margin-top: 1.5px;
         border-radius: 2px;
+        @media screen and (max-width: 480px) {
+            width: 5.2px;
+            height: 14.3px;
+            margin-left: 5.525px;
+            margin-top: 0.975px;
+            border-radius: 1.3px;
+        }
     }
     .rectTwo {
         width: 22px;
@@ -29,6 +43,13 @@
         margin-top: 8.5px;
         margin-left: 1.5px;
         border-radius: 2px;
+        @media screen and (max-width: 480px) {
+            height: 5.2px;
+            width: 14.3px;
+            margin-top: 5.525px;
+            margin-left: 0.975px;
+            border-radius: 1.3px;
+        }
     }
     .rectThree {
         position: absolute;
@@ -38,6 +59,13 @@
         margin-left: 8.5px;
         margin-top: 8.5px;
         border-radius: 1px;
+        @media screen and (max-width: 480px) {
+            width: 5.2px;
+            height: 5.2px;
+            margin-left: 5.525px;
+            margin-top:  5.525px;
+            border-radius: 0.65px;
+        }
     }
     .black {
         background-color: black !important;

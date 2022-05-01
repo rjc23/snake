@@ -5,49 +5,52 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    h1 {
+
+    h1, h2 {
         font-family: nokia;
+        margin-top: unset;
     }
-    .game__grid {
-        width: 500px;
-        height: 375px;
-        display: flex;
-        flex-wrap: wrap;
+
+    .wrapper {
         border: solid 5px black;
         padding: 2px;
-
-        .welcome {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            h2 {
-                font-family: nokia;
-                margin-top: unset;
-            }
-            .buttons {
-                display: flex;
-                gap: 10px;
-                button {
-                    background: none;
-                    color: inherit;
-                    border: solid 3px black;
-                    // border-radius: 5px;
-                    padding: 20px;
-                    font-size: 16px;
-                    font-family: nokia;
-                    cursor: pointer;
-                    outline: inherit;
-                    width: 120px;
-                    &:hover {
-                        background-color: black;
-                        color: rgb(190,201,5);
-                    }
-                }
-            }
+        width: 500px;
+        height: 375px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        @media screen and (max-width: 480px) {
+            height: 243.75px;
+            width: 325px;
         }
     }
+
+    .game__grid {
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+    }
+
+    .welcome {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        a {
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    }
+    
 
     .scores {
         display: flex;
@@ -56,5 +59,75 @@
         p {
             font-family: nokia;
         }
+        @media screen and (max-width: 480px) {
+            width: 325px;
+        }
     }
+
+    button {
+        background-color: black;
+        color: rgb(190,201,5);
+        border: solid 3px black;
+        padding: 20px;
+        font-size: 16px;
+        font-family: nokia;
+        cursor: pointer;
+        outline: inherit;
+        width: 120px;
+        @media screen and (max-width: 480px) {
+            padding: 8px;
+            width: 90px;
+        }
+    }
+
+    .you-died {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(190, 201, 5, 0.7);
+        left: 0;
+        top: 0;
+    }
+
+    .show-rules {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        p {
+            width: 80%;
+        }
+        h2 {
+            margin: unset
+        };
+    }
+
+    .move-buttons {
+        width: 270px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .move-buttons__center {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        button {
+            padding: 16px !important;
+        }
+    }
+}
+
+.alt {
+    display: none;
 }

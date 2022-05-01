@@ -1,26 +1,46 @@
-
 <div class="game">
     <h1>Retro snake</h1>
-    <div class="game__grid">
-        <!-- <div *ngIf="(game$ | async)?.data?.showWelcome" class="welcome">
+    <p class="alt"><strong>Play the classic retro mobile phone game in your web browser! Guide the snake towards the food but avoid your ever-growing tail.</strong>Play the classic retro mobile phone game in your web browser! Guide the snake towards the food but avoid your ever-growing tail.</p>
+    <div class="wrapper">
+        <div *ngIf="(game$ | async)?.data?.showWelcome" class="welcome">
             <h2>Choose level</h2>
             <div class="buttons">
-                <button (click)="startEasy()">Easy</button>
-                <button (click)="startHard()">Hard</button>
-                <button (click)="startInsane()" >Insane</button>
+                <button (click)="startGame('easy')">Easy</button>
+                <button (click)="startGame('hard')">Hard</button>
+                <button (click)="startGame('insane')" >Insane</button>
             </div>
-        </div> -->
-        
-        <!-- <div *ngIf="(game$ | async)?.data?.showGame"> -->
-        <div *ngIf="true">
+            <a (click)="showControls()">Controls</a>
+        </div>
+
+        <div *ngIf="(game$ | async)?.data?.showGame" class="game__grid">
             <app-square *ngFor="let square of grid$ | async" [square]="square"></app-square>
+        </div>
+
+        <div *ngIf="(game$ | async)?.data?.showYouDied" class="you-died">
+            <h2>You died!</h2>
+            <button (click)="newGame()">Play again</button>
+            <div style="margin-top: 20px;" *ngIf="(game$ | async)?.data?.score as score">
+                <a *ngIf="score > 299"  href="https://www.youtube.com/watch?v=MN0opML5M0M" target="_blank">Surprise</a>
+            </div>
+        </div>
+
+        <div *ngIf="(game$ | async)?.data?.showRules" class="show-rules">
+            <h2>Controls</h2>
+            <p>On desktop, use the W A S D keys to move. Score more than 300 for a surprise.</p>
+            <button (click)="back()">Back</button>
         </div>
     </div>
     <div class="scores">
         <p>Score: {{ (game$ | async)?.data?.score }}</p>
-        <p>High Score: 90</p>
+        <p>High Score: {{ (game$ | async)?.data?.highScore }}</p>
+    </div>
+    <br>
+    <div *ngIf="width < 980" class="move-buttons">
+        <button (click)="moveSnake('up')">UP</button>
+        <div class="move-buttons__center">
+            <button (click)="moveSnake('left')">LEFT</button>
+            <button (click)="moveSnake('right')">RIGHT</button>
+        </div>
+        <button (click)="moveSnake('down')">DOWN</button>
     </div>
 </div>
-
-<button (click)="stopGame()">Stop</button>
-<button (click)="newGame()">New Game</button>

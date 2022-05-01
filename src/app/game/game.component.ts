@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import { interval, map, Observable, Subscription } from 'rxjs';
 import { Game, Square } from '../interfaces/square';
 import { SnakeService } from '../services/snake.service';
@@ -13,6 +13,7 @@ export class GameComponent {
 
   game$!: Observable<Game>;
   grid$!: Observable<Square[]>;
+  width = window.innerWidth;
 
   constructor(private game: SnakeService) { 
     this.game$ = this.game.getSnake();
@@ -20,14 +21,6 @@ export class GameComponent {
       map(game => game.grid)
     )
   }
-
-  moveSnake() {
-    this.game.moveSnake();
-  }
-
-  // startGame() {
-  //   this.game.startGame();
-  // }
 
   stopGame() {
     this.game.stopGame();
@@ -37,15 +30,19 @@ export class GameComponent {
     this.game.newGame();
   }
 
-  startEasy() {
-    this.game.startGame(300);
+  startGame(level: string) {
+    this.game.startGame(level);
   }
 
-  startHard() {
-
+  moveSnake(direction: string) {
+    this.game.updateDirection(direction);
   }
 
-  startInsane() {
+  back() {
+    this.game.back();
+  }
 
+  showControls() {
+    this.game.showControls();
   }
 }

@@ -10,3 +10,20 @@ body {
     background: rgb(190,201,5);
     background: radial-gradient(circle, rgba(190,201,5,1) 0%, rgba(185,201,5,0.9) 100%);
 }
+
+// html, body {
+//     margin: 0; height: 100%; overflow: hidden
+// }
+
+* {
+    touch-action: manipulation;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+    color: black;
+    font-family: nokia;
+}
+
+.alt {
+    display: none;
+}

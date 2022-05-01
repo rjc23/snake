@@ -9,7 +9,6 @@ export class SnakeService {
 
   subscription!: Subscription;
 
-
   constructor() { }
 
   private game = new BehaviorSubject<Game>(this.createGame());
@@ -19,16 +18,38 @@ export class SnakeService {
     return this.game;
   }
 
-  startGame(val: number) {
+  startGame(difficulty: string) {
     let game = this.game.value;
     game.data.showGame = true;
     game.data.showWelcome = false;
+    game.data.difficulty = difficulty;
     this.game.next(game);
-    let source = interval(val);
-    this.subscription = source.subscribe(val => this.moveSnake());
+    this.addFood(0);
+
+    let source: any;
+    switch (difficulty) {
+      case "easy":
+        source = interval(200);
+        break;
+      case "hard":
+        source = interval(100);
+        break;
+      case "insane":
+        source = interval(50);
+        break;
+    };
+    
+    this.subscription = source.subscribe(() => this.moveSnake());
   }
 
   stopGame() {
+    let game = this.game.value;
+    game.data.showYouDied = true;
+    if(game.data.score > game.data.highScore) {
+      game.data.highScore = game.data.score;
+      localStorage.setItem("highScore", game.data.highScore.toString());
+    }
+    this.game.next(game);
     this.subscription.unsubscribe();
   }
 
@@ -37,15 +58,24 @@ export class SnakeService {
   }
 
   createGame(): Game {
+    let highScore = 0;
+    let highStorage = localStorage.getItem("highScore");
+    if(highStorage) {
+      highScore = parseInt(highStorage);
+    }
+
     let game: Game = {
       data: {
         direction: ["left"],
-        speed: 1,
-        snake: [ 45, 46, 47 ],
-        foodLocation: 20,
+        snake: [ 137, 138, 139 ],
+        foodLocation: 137,
+        difficulty: "easy",
         score: 0,
+        highScore: highScore,
         showWelcome: true,
-        showGame: false
+        showGame: false,
+        showYouDied: false,
+        showRules: false
       },
       grid: []
     }
@@ -53,8 +83,8 @@ export class SnakeService {
     for (let row = 0; row < 300; row++) {
       const square: Square = {
         key: row,
-        fill: row === 45 || row === 46 || row == 47 ? true : false,
-        food: row === 20 ? true : false,
+        fill: row === 137 || row === 138 || row == 139 ? true : false,
+        food: false,
         bounds: []
       }
       if(row < 20) {
@@ -148,7 +178,7 @@ export class SnakeService {
           currentDirection[currentDirection.length-1] === "up" ? updateDir = false : null;
           break;
       }
-      if(updateDir) {
+      if(updateDir && direction !== currentDirection[currentDirection.length-1]) {
         currentGame.data.direction.push(direction);
         this.game.next(currentGame);
       }
@@ -172,7 +202,31 @@ export class SnakeService {
 
   updateScore() {
     let currentGame = this.game.value;
-    currentGame.data.score++;
+
+    switch(currentGame.data.difficulty) {
+      case "easy":
+        currentGame.data.score++;
+        break;
+      case "hard":
+        currentGame.data.score += 5;
+        break;
+      case "insane":
+        currentGame.data.score += 10;
+    }
+    this.game.next(currentGame);
+  }
+
+  showControls() {
+    let currentGame = this.game.value;
+    currentGame.data.showRules = true;
+    currentGame.data.showWelcome = false;
+    this.game.next(currentGame);
+  }
+
+  back() {
+    let currentGame = this.game.value;
+    currentGame.data.showWelcome = true;
+    currentGame.data.showRules = false;
     this.game.next(currentGame);
   }
 }

@@ -5,12 +5,15 @@ export interface Game {
 
 interface Data {
     direction: string[],
-    speed: number,
     snake: number[],
     foodLocation: number,
+    difficulty: string,
     score: number,
+    highScore: number,
     showWelcome: boolean,
-    showGame: boolean
+    showGame: boolean,
+    showYouDied: boolean,
+    showRules: boolean
 }
 
 export interface Square {
